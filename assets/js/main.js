@@ -1,7 +1,7 @@
 /*
-	Twenty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Latitude by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
 */
 
 (function($) {
@@ -13,11 +13,11 @@
 
 	// Breakpoints.
 		breakpoints({
-			wide:      [ '1281px',  '1680px' ],
-			normal:    [ '981px',   '1280px' ],
-			narrow:    [ '841px',   '980px'  ],
-			narrower:  [ '737px',   '840px'  ],
-			mobile:    [ null,      '736px'  ]
+			wide:     [ '1281px',  '1680px' ],
+			normal:   [ '981px',   '1280px' ],
+			narrow:   [ '737px',   '980px'  ],
+			mobile:   [ '481px',   '736px'  ],
+			mobilep:  [ null,      '480px'  ]
 		});
 
 	// Play initial animations on page load.
@@ -27,17 +27,9 @@
 			}, 100);
 		});
 
-	// Scrolly.
-		$('.scrolly').scrolly({
-			speed: 1000,
-			offset: function() { return $header.height() + 10; }
-		});
-
 	// Dropdowns.
 		$('#nav > ul').dropotron({
-			mode: 'fade',
-			noOpenerFade: true,
-			expandMode: (browser.mobile ? 'click' : 'hover')
+			alignment: 'center'
 		});
 
 	// Nav Panel.
@@ -70,12 +62,10 @@
 					visibleClass: 'navPanel-visible'
 				});
 
-		// Fix: Remove navPanel transitions on WP<10 (poor/buggy performance).
-			if (browser.os == 'wp' && browser.osVersion < 10)
-				$('#navButton, #navPanel, #page-wrapper')
-					.css('transition', 'none');
-
 	// Header.
+	// If the header is using "alt" styling and #banner is present, use scrollwatch
+	// to revert it back to normal styling once the user scrolls past the banner.
+	// Note: This is disabled on mobile devices.
 		if (!browser.mobile
 		&&	$header.hasClass('alt')
 		&&	$banner.length > 0) {
@@ -85,8 +75,8 @@
 				$banner.scrollex({
 					bottom:		$header.outerHeight(),
 					terminate:	function() { $header.removeClass('alt'); },
-					enter:		function() { $header.addClass('alt reveal'); },
-					leave:		function() { $header.removeClass('alt'); }
+					enter:		function() { $header.addClass('alt'); },
+					leave:		function() { $header.removeClass('alt'); $header.addClass('reveal'); }
 				});
 
 			});
