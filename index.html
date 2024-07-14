@@ -18,7 +18,7 @@
 			.banner {
 				display: flex;
 				flex-direction: column;
-				width: 1000px;
+				width: 90%;
 				margin: 10px auto;
 			}
 			.year-divider {
@@ -55,6 +55,23 @@
 			.banner-item:hover {
 				transform: scale(1.05);
 			}
+
+			@media (max-width: 768px) {
+            	.banner {
+                	width: 95%;
+            	}
+           		.banner-item {
+                	padding: 8px;
+                	font-size: 0.9em;
+            	}
+        	}
+
+        	@media (max-width: 480px) {
+            	.banner-item {
+                	padding: 6px;
+                	font-size: 0.8em;
+            	}
+        	}
 			
 
 		</style>
@@ -289,7 +306,6 @@
 									</div>
 								</div>
 							</section>
-
 							
 
 					</div>
